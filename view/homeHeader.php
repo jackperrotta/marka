@@ -26,18 +26,29 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+      <ul class="navbar-nav mr-auto ml-3">
+        <li class="nav-item">
           <a class="nav-link" href="<?php echo $base_path;?>">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $base_path;?>#about">About</a>
+          <a class="nav-link" href="<?php echo $base_path;?>/#about">About</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#"></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"></a>
+        </li> -->
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $base_path;?>/visitors/index.php?type=vistor">Login</a>
+        </li>
+        <li class="nav-item d-sm-none d-md-none d-lg-block">
+          <a class="nav-link disabled">|</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $base_path;?>/registration/index.php?type=vistor">Register</a>
         </li>
       </ul>
     </div>
