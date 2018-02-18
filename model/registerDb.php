@@ -19,5 +19,9 @@ function addVisitor($fName, $lName, $email, $password, $address, $address2, $cit
   $result = $statement->execute();
   $statement->closeCursor();
   return $result;
-}
+};
+
+function getGroups(){
+
+};
 ?>

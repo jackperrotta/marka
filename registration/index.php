@@ -35,9 +35,14 @@ if (isset($_POST['visitorRegister'])){
     $success = addVisitor($fName, $lName, $email, $password, $address, $address2, $city, $state, $zip, $type);
 
     if ($success) {
-      $_SESSION['LOGGED_IN']='OK';
 
-      // $visitors = finishVisitor($email);
+      $groups = getGroups();
+
+      if(isset($_POST['registerTwo'])){
+
+        // $visitors = finishVisitor($email);
+      }
+
       include 'visitorRegisterTwo.php';
       exit();
     }
@@ -46,7 +51,7 @@ if (isset($_POST['visitorRegister'])){
     include 'visitorRegister.php';
     exit();
   }
-}
+};
 
 //if all else fails
 include 'visitorRegister.php';
