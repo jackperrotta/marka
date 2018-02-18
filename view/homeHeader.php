@@ -17,7 +17,7 @@
   </head>
   <body>
 
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="<?php echo $base_path;?>">
       <img src="<?php echo $base_path;?>/img/marka-logo.png" width="30" height="30" alt="">
     </a>

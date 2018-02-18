@@ -1,5 +1,6 @@
+<div class="bg-dark mt-5">
 <footer class="container py-5">
-  <div class="row">
+  <div class="row text-light">
     <div class="col-12 col-md">
       <img src="<?php echo $base_path;?>/img/marka-logo.png" width="30" height="30" alt="" class="my-2 mx-auto">
       <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
@@ -44,6 +45,7 @@
     </div>
   </div>
 </footer>
+</div>
 
 <!-- Bootstrap core JavaScript -->
 <!-- Placed at the end of the document so the pages load faster -->

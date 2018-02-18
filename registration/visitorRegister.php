@@ -1,54 +1,60 @@
 <?php include '../view/homeHeader.php' ?>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-10">
-      <form>
+  <div class="row mx-auto">
+    <div class="col-lg-10 mx-auto">
+
+      <form action="index.php?type=<?php echo $type;?>" method="post">
+
+        <div class="text-center">
+          <img class="mt-3" src="../img/marka-logo.png" style="height: 150px; width: 150px;">
+          <h1 class="h3 mb-3 font-weight-normal text-capitalize"><?php echo $type;?> Registration</h1>
+          <div id="message">
+              <?php echo $message;?>
+          </div>
+        </div>
+
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="fname">First Name</label>
-            <input type="text" class="form-control" id="fName" placeholder="First Name">
+            <input type="text" class="form-control" id="fName" name="fName" placeholder="First Name" required>
           </div>
           <div class="form-group col-md-6">
             <label for="lName">Last Name</label>
-            <input type="text" class="form-control" id="lName" placeholder="Last Name">
+            <input type="text" class="form-control" id="lName" name="lName" placeholder="Last Name" required>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="email2">Confirm Email</label>
-            <input type="email" class="form-control" id="email2" placeholder="Confirm Email">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
           </div>
           <div class="form-group col-md-6">
             <label for="password2">Password</label>
-            <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
           </div>
         </div>
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+          <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St">
         </div>
         <div class="form-group">
           <label for="address2">Address 2</label>
-          <input type="text" class="form-control" id="address2" placeholder="Apartment, studio, or floor">
+          <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="city">City</label>
-            <input type="text" class="form-control" id="city">
+            <input type="text" class="form-control" id="city" name="city">
           </div>
           <div class="form-group col-md-4">
             <label for="state">State</label>
-            <select id="state" class="form-control">
+            <select id="state" name="state" class="form-control">
               <option selected>Choose...</option>
               <option value="AL">Alabama</option>
             	<option value="AK">Alaska</option>
@@ -105,10 +111,10 @@
           </div>
           <div class="form-group col-md-2">
             <label for="zip">Zip</label>
-            <input type="text" class="form-control" id="zip">
+            <input type="text" class="form-control" id="zip" name="zip">
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">REGISTER</button>
+        <button type="submit" class="btn btn-primary" name="visitorRegister">REGISTER</button>
       </form>
     </div>
   </div>
