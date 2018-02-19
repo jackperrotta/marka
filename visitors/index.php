@@ -26,7 +26,7 @@ if (isset($_POST['go_button']) && $type=='visitor')
         exit();
     } else
     {
-        $message = "Login failed. Please try again.";
+        $message = "Login failed. Please try again.</div>";
         include 'login.php';
         exit();
     }
@@ -47,7 +47,7 @@ if (isset($_POST['go_button']) && $type=='teacher')
         exit();
     } else
     {
-        $message = "Login failed. Please try again.";
+        $message = "<div class='alert alert-danger' role='alert'>Login failed. Please try again.</div>";
         include 'people_login.php';
         exit();
     }
