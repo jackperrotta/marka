@@ -4,7 +4,7 @@
   <div class="row mt-5">
     <div class="col-md-6 mx-auto text-center">
       <img class="mb-3" src="../img/marka-logo.png" style="height: 150px; width: 150px;">
-      <form action="index.php?type=<?php echo $type;?>" method="post">
+      <form action="index.php?type=visitor" method="post">
         <h1 class="h3 mb-3 font-weight-normal text-capitalize"><?php echo $type;?> Sign In</h1>
         <div>
             <?php echo $message;?>
@@ -17,7 +17,9 @@
         <div class="mt-3">
           <p><a href="<?php echo $base_path;?>/usersShared/index.php?type=vistor&status=register">Create Account</a> | <a href="">Employee Login</a></p>
         </div>
-        <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" name="userLogin">Sign In</button>
+        <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" name="user_login">
+          Sign In
+        </button>
       </form>
     </div>
   </div>

@@ -24,20 +24,20 @@ function addVisitor($fName, $lName, $email, $password, $address, $address2, $cit
 function loginUsers($email,$password,$type){
   global $db;
     $statement = $db->prepare(
-      'select id from users where email = :email and password = :password and type = :type'
+      'select id from users where email = :email and password = :password and accountType = :type'
     );
-    $statement->bindValue(':username',$username);
+    $statement->bindValue(':email',$email);
     $statement->bindValue(':password',$password);
     $statement->bindValue(':type',$type);
     $statement->execute();
     $array = $statement->fetch();
     $statement->closeCursor();
-    if (empty($array['id'])){
-        $result = false;
-    } else
-    {
-        $result = $array['id'];
-    }
-    return $result;
+    // if (empty($array['id'])){
+    //     $result = false;
+    // } else
+    // {
+    //     $result = $array['id'];
+    // }
+    return $array;
 };
 ?>

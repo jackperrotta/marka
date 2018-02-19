@@ -20,14 +20,14 @@ if ($status == 'login'){
 };
 
 // Visitor Login
-if (isset($_POST['userLogin']) && $type=='visitor'){
+if (isset($_POST['user_login']) && $type=='visitor'){
 
     $email = filter_input(INPUT_POST,'email');
     $password = filter_input(INPUT_POST,'password');
 
     $visitor_id = loginUsers($email,$password,$type);
 
-    if (!empty($visitor_id)){
+    if (!empty($array)){
 
         // session_start();
         // $_SESSION['LOGGED_IN']='OK';
