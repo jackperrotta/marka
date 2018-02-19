@@ -16,27 +16,27 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="fname">First Name</label>
-            <input type="text" class="form-control" id="fName" name="fName" placeholder="First Name" required>
+            <input type="text" class="form-control" id="fName" name="fName" placeholder="John" required>
           </div>
           <div class="form-group col-md-6">
             <label for="lName">Last Name</label>
-            <input type="text" class="form-control" id="lName" name="lName" placeholder="Last Name" required>
+            <input type="text" class="form-control" id="lName" name="lName" placeholder="Doe" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="john.doe@gmail.com" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Secret Password" required>
           </div>
           <div class="form-group col-md-6">
-            <label for="password2">Password</label>
-            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
+            <label for="password2">Confirm Password</label>
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="Secret Password" required>
           </div>
         </div>
         <div class="form-group">
@@ -50,7 +50,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="city">City</label>
-            <input type="text" class="form-control" id="city" name="city">
+            <input type="text" class="form-control" id="city" name="city" placeholder="Philadelphia">
           </div>
           <div class="form-group col-md-4">
             <label for="state">State</label>
@@ -111,7 +111,7 @@
           </div>
           <div class="form-group col-md-2">
             <label for="zip">Zip</label>
-            <input type="text" class="form-control" id="zip" name="zip">
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="123456">
           </div>
         </div>
         <button type="submit" class="btn btn-primary" name="visitorRegister">REGISTER</button>
