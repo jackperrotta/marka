@@ -21,23 +21,16 @@ function addVisitor($fName, $lName, $email, $password, $address, $address2, $cit
   return $result;
 };
 
-function loginUsers($email,$password,$type){
+function loginUsers($email,$password){
   global $db;
     $statement = $db->prepare(
-      'select id from users where email = :email and password = :password and accountType = :type'
+      'select * from users where email = :email and password = :password'
     );
     $statement->bindValue(':email',$email);
     $statement->bindValue(':password',$password);
-    $statement->bindValue(':type',$type);
     $statement->execute();
-    $array = $statement->fetch();
+    $userId = $statement->fetchAll();
     $statement->closeCursor();
-    // if (empty($array['id'])){
-    //     $result = false;
-    // } else
-    // {
-    //     $result = $array['id'];
-    // }
-    return $array;
+    return $userId;
 };
 ?>

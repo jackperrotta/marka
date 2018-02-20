@@ -19,7 +19,7 @@
       <ul class="list-unstyled text-small">
         <li><a class="text-muted" href="#">Marka for Beaches</a></li>
         <li><a class="text-muted" href="#">Register</a></li>
-        <li><a class="text-muted" href="#">Login</a></li>
+        <li><a class="text-muted" href="<?php echo $base_path;?>/usersShared/index.php?type=employee&status=login">Login</a></li>
         <li><a class="text-muted" href="#">Locations</a></li>
       </ul>
     </div>

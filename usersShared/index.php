@@ -20,17 +20,17 @@ if ($status == 'login'){
 };
 
 // Visitor Login
-if (isset($_POST['user_login']) && $type=='visitor'){
+if (isset($_POST['login']) && $type=='visitor'){
 
     $email = filter_input(INPUT_POST,'email');
     $password = filter_input(INPUT_POST,'password');
 
-    $visitor_id = loginUsers($email,$password,$type);
+    $userId = loginUsers($email,$password);
 
-    if (!empty($array)){
+    if ($userId){
 
-        // session_start();
-        // $_SESSION['LOGGED_IN']='OK';
+        session_start();
+        $_SESSION['LOGGED_IN']='OK';
         // $_SESSION['TYPE']='visitor';
         // $_SESSION['ID'] = $visitor_id;
         // $_SESSION['EMAIL'] = $email;
@@ -46,17 +46,19 @@ if (isset($_POST['user_login']) && $type=='visitor'){
 }
 
 // Employee Login
-if (isset($_POST['login']) && $type=='employee')
-{
-    $username = filter_input(INPUT_POST,'email');
+if (isset($_POST['login']) && $type=='employee'){
+
+    $email = filter_input(INPUT_POST,'email');
     $password = filter_input(INPUT_POST,'password');
-    $employee_id = loginPeople($username,$password,$type);
-    if (!empty($employee_id)){
+
+    $userId = loginUsers($email,$password);
+
+    if ($userId){
         session_start();
         $_SESSION['LOGGED_IN']='OK';
-        $_SESSION['TYPE']='employee';
-        $_SESSION['ID'] = $employee_id;
-        $_SESSION['EMAIL'] = $email;
+        // $_SESSION['TYPE']='employee';
+        // $_SESSION['ID'] = $employee_id;
+        // $_SESSION['EMAIL'] = $email;
         header('Location: ../employees/index.php');
         exit();
     } else
@@ -103,7 +105,7 @@ if (isset($_POST['visitorRegister'])){
   }
 };
 
-//if all else fails
+// if all else fails
 include 'login.php';
 exit();
 
