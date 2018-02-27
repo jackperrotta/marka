@@ -21,13 +21,14 @@ function addVisitor($fName, $lName, $email, $password, $address, $address2, $cit
   return $result;
 };
 
-function loginUsers($email,$password){
+function loginUsers($email,$password,$type){
   global $db;
     $statement = $db->prepare(
-      'select * from users where email = :email and password = :password'
+      'select * from users where email = :email and password = :password and accountType = :type'
     );
     $statement->bindValue(':email',$email);
     $statement->bindValue(':password',$password);
+    $statement->bindValue(':type',$type);
     $statement->execute();
     $userId = $statement->fetchAll();
     $statement->closeCursor();

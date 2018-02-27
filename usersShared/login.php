@@ -5,7 +5,7 @@
     <div class="col-md-6 mx-auto text-center">
       <img class="mb-3" src="../img/marka-logo.png" style="height: 150px; width: 150px;">
       <form action="index.php?type=<?php echo $type?>" method="post">
-        <h1 class="h3 mb-3 font-weight-normal text-capitalize"><?php echo $type;?> Sign In</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-capitalize"><?php echo $type;?> Login</h1>
         <div>
             <?php echo $message;?>
         </div>
@@ -19,9 +19,17 @@
             <a href="<?php echo $base_path;?>/usersShared/index.php?type=visitor&status=register">
             Create Account
           </a> |
-            <a href="<?php echo $base_path;?>/usersShared/index.php?type=employee&status=login">
+          <?php
+            if($type == 'visitor'){
+              echo "<a href='" . $base_path . "/usersShared/index.php?type=employee&status=login'>
               Employee Login
-            </a>
+              </a>";
+            } else{
+              echo "<a href='" . $base_path . "/usersShared/index.php?type=visitor&status=login'>
+              Visitor Login
+              </a>";
+            }
+          ?>
           </p>
         </div>
         <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" name="login">

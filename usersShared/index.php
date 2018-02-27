@@ -25,7 +25,7 @@ if (isset($_POST['login']) && $type=='visitor'){
     $email = filter_input(INPUT_POST,'email');
     $password = filter_input(INPUT_POST,'password');
 
-    $userId = loginUsers($email,$password);
+    $userId = loginUsers($email,$password,$type);
 
     if ($userId){
 
@@ -51,7 +51,7 @@ if (isset($_POST['login']) && $type=='employee'){
     $email = filter_input(INPUT_POST,'email');
     $password = filter_input(INPUT_POST,'password');
 
-    $userId = loginUsers($email,$password);
+    $userId = loginUsers($email,$password, $type);
 
     if ($userId){
         session_start();

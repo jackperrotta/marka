@@ -24,5 +24,5 @@
     </div>
   </div>
 </div>
-jhvivib
+
 <?php include './view/homeFooter.php' ?>
