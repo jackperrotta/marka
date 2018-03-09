@@ -8,7 +8,10 @@ $type = filter_input(INPUT_GET,'type');
 $status = filter_input(INPUT_GET, 'status');
 
 // Logout
-if (isset($_GET['logout'])){
+if ($status == 'logout'){
+    // session_unset();
+    // session_destroy();
+
     include 'logout.php';
     exit();
 }
@@ -29,11 +32,30 @@ if (isset($_POST['login']) && $type=='visitor'){
 
     if ($userId){
 
+        $id = $userId[0][id];
+        $fName = $userId[0][fName];
+        $lName = $userId[0][lName];
+        $address = $userId[0][address];
+        $address2 = $userId[0][address2];
+        $city = $userId[0][city];
+        $state = $userId[0][state];
+        $zip = $userId[0][zip];
+        $groupId = $userId[0][GroupID];
+
         session_start();
-        $_SESSION['LOGGED_IN']='OK';
-        // $_SESSION['TYPE']='visitor';
-        // $_SESSION['ID'] = $visitor_id;
-        // $_SESSION['EMAIL'] = $email;
+        $_SESSION['logginIn']='OK';
+        $_SESSION['type']='visitor';
+        $_SESSION['id'] = $userId;
+        $_SESSION['email'] = $email;
+        $_SESSION['fName'] = $fName;
+        $_SESSION['lName'] = $lName;
+        $_SESSION['address'] = $address;
+        $_SESSION['address2'] = $address2;
+        $_SESSION['city'] = $city;
+        $_SESSION['state'] = $state;
+        $_SESSION['zip'] = $zip;
+        $_SESSION['groupId'] = $groupId;
+
         header('Location: ../visitors/index.php');
         exit();
 
