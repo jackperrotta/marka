@@ -15,8 +15,6 @@
         <span id="date">
         </span>
       </p>
-
-
       <p><a class="btn btn-secondary" href="<?php echo $base_path;?>/visitors/index.php?tag=fri" role="button">View Pass &raquo;</a></p>
     </div>
   </div>
