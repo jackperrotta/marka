@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-md-6 mx-auto">
       <button type="button" class="btn btn-primary btn-lg btn-block">Daily Tag: $5</button>
-      <button type="button" class="btn btn-primary btn-lg btn-block">Weekly Tag: $10</button>
+      <a href="<?php echo $base_path ?>/visitors/index.php?status=payment2"><button type="button" class="btn btn-primary btn-lg btn-block my-2">Weekly Tag: $10</button></a>
       <button type="button" class="btn btn-primary btn-lg btn-block">Seasonal Tag</button>
     </div>
   </div>

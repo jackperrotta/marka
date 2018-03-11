@@ -41,6 +41,16 @@ if($status == 'purchase'){
   exit();
 };
 
+if($status == 'payment2'){
+  include 'paymentDetails.php';
+  exit();
+};
+
+if($status == 'confirm'){
+  include 'paymentConfirmation.php';
+  exit();
+};
+
 // If session go to Dashboard
 if ($_SESSION['logginIn'] === 'OK') {
   include 'dashboard.php';
