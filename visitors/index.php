@@ -4,7 +4,8 @@
 <?php
 
 $message = "";
-$tag = filter_input(INPUT_GET,'tag');;
+$tag = filter_input(INPUT_GET,'tag');
+$status = filter_input(INPUT_GET, 'status');
 
 session_start();
 
@@ -19,14 +20,35 @@ $state = $_SESSION['state'];
 $zip = $_SESSION['zip'];
 $groupId = $_SESSION['groupId'];
 
+// Logout
+if ($status == 'logout'){
+  session_unset();
+  session_destroy();
+
+  header('Location:../usersShared/index.php');
+  exit();
+};
+
 //if tag is set
 if ($tag == 'fri'){
   include 'tag.php';
   exit();
 };
 
+// Purchase Pass
+if($status == 'purchase'){
+  include 'payment.php';
+  exit();
+};
+
+// If session go to Dashboard
+if ($_SESSION['logginIn'] === 'OK') {
+  include 'dashboard.php';
+  exit();
+};
+
 //if all else fails
-include 'dashboard.php';
+header('Location:../usersShared/index.php');
 exit();
 
 ?>

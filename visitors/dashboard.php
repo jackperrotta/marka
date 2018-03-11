@@ -9,13 +9,17 @@
       <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
     </div>
     <div class="col-md-4 mx-auto text-center">
-      <img class="mb-3" src="../img/marka-logo.png" style="height: 150px; width: 150px;">
-      <h2><?php echo $fName . " " . $lName ?></h2>
-      <p>Todays Date<br>
-        <span id="date">
-        </span>
-      </p>
-      <p><a class="btn btn-secondary" href="<?php echo $base_path;?>/visitors/index.php?tag=fri" role="button">View Pass &raquo;</a></p>
+      <div class="card">
+        <div class="card-body" style="background-color: silver;">
+          <img class="mb-3" src="../img/marka-logo.png" style="height: 150px; width: 150px;">
+          <h2><?php echo $fName . " " . $lName ?></h2>
+          <p>Todays Date<br>
+            <span id="date">
+            </span>
+          </p>
+          <p><a class="btn btn-info" href="<?php echo $base_path;?>/visitors/index.php?tag=fri" role="button">View Pass &raquo;</a></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

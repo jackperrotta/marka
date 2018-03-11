@@ -28,15 +28,21 @@
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav mr-auto ml-3">
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $base_path;?>">Home</a>
+          <a class="nav-link" href="<?php echo $base_path;?>/visitors/index.php"><?php echo $fName ?>'s Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $base_path;?>/#about">About</a>
+          <a class="nav-link" href="<?php echo $base_path;?>/visitors/index.php?status=purchase">Purchase Pass</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $base_path;?>/visitors/index.php?status=group">My Group</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $base_path;?>/visitors/index.php?status=beach">My Beach</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $base_path;?>/usersShared/index.php?status=logout">Logout</a>
+          <a class="nav-link" href="<?php echo $base_path;?>/visitors/index.php?status=logout">Logout</a>
         </li>
       </ul>
     </div>

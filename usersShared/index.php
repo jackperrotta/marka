@@ -7,15 +7,6 @@ $message = "";
 $type = filter_input(INPUT_GET,'type');
 $status = filter_input(INPUT_GET, 'status');
 
-// Logout
-if ($status == 'logout'){
-    // session_unset();
-    // session_destroy();
-
-    include 'logout.php';
-    exit();
-}
-
 // Show login page
 if ($status == 'login'){
   include 'login.php';
@@ -78,9 +69,7 @@ if (isset($_POST['login']) && $type=='employee'){
     if ($userId){
         session_start();
         $_SESSION['LOGGED_IN']='OK';
-        // $_SESSION['TYPE']='employee';
-        // $_SESSION['ID'] = $employee_id;
-        // $_SESSION['EMAIL'] = $email;
+
         header('Location: ../employees/index.php');
         exit();
     } else
@@ -117,9 +106,29 @@ if (isset($_POST['visitorRegister'])){
 
     if ($success) {
 
-      include 'visitorRegisterTwo.php';
-      exit();
+      $type = 'visitor';
+
+      $userId = loginUsers($email,$password,$type);
+
+      if ($userId){
+
+          session_start();
+          $_SESSION['logginIn'] = 'OK';
+          $_SESSION['type'] = $type;
+          $_SESSION['id'] = $userId[0][id];
+          $_SESSION['email'] = $email;
+          $_SESSION['fName'] = $userId[0][fName];
+          $_SESSION['lName'] = $userId[0][lName];
+          $_SESSION['address'] = $userId[0][address];
+          $_SESSION['address2'] = $userId[0][address2];
+          $_SESSION['city'] = $userId[0][city];
+          $_SESSION['state'] = $userId[0][state];
+          $_SESSION['zip'] = $userId[0][zip];
+          $_SESSION['groupId'] = $userId[0][GroupID];
+          header('Location: ../visitors/index.php');
+          exit();
     }
+  }
   } else {
     $message = "<div class='alert alert-danger' role='alert'>Passwords don't match, Please try again.</div>";
     include 'visitorRegister.php';
@@ -128,7 +137,7 @@ if (isset($_POST['visitorRegister'])){
 };
 
 // if all else fails
-include 'login.php';
+include 'logout.php';
 exit();
 
 ?>
