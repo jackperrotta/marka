@@ -11,6 +11,13 @@ if (isset($_GET['logout'])){
     exit();
 }
 
+if (isset($_GET['visitors'])){
+  include '../view/adminHeader.php';
+  include 'visitorsList.php';
+  include '../view/adminFooter.php';
+  exit();
+}
+
 if ($_SESSION['LOGGED_IN'] == 'OK' && $_SESSION['admin'] == '1'){
   include '../view/adminHeader.php';
   include 'dashboard.php';

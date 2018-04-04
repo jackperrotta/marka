@@ -52,7 +52,7 @@
                </a>
              </li> -->
              <li class="nav-item">
-               <a class="nav-link" href="#">
+               <a class="nav-link" href="<?php echo $base_path ?>/employees/index.php?visitors">
                  <span data-feather="users"></span>
                  Beach Goers
                </a>

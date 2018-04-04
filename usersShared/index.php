@@ -16,7 +16,7 @@ if ($status == 'login'){
 // Visitor Login
 if (isset($_POST['login']) && $type=='visitor'){
 
-    $email = filter_input(INPUT_POST,'email');
+    $email = filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL);
     $password = filter_input(INPUT_POST,'password');
 
     $userId = loginUsers($email,$password,$type);
@@ -36,7 +36,7 @@ if (isset($_POST['login']) && $type=='visitor'){
         session_start();
         $_SESSION['logginIn']='OK';
         $_SESSION['type']='visitor';
-        $_SESSION['id'] = $userId;
+        $_SESSION['id'] = $id;
         $_SESSION['email'] = $email;
         $_SESSION['fName'] = $fName;
         $_SESSION['lName'] = $lName;
@@ -61,32 +61,44 @@ if (isset($_POST['login']) && $type=='visitor'){
 // Employee Login
 if (isset($_POST['login']) && $type=='employee'){
 
-    $email = filter_input(INPUT_POST,'email');
+    // Server side validation
+    $email = filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL);
     $password = filter_input(INPUT_POST,'password');
 
-    $userId = loginUsers($email,$password, $type);
+    // Make sure they're not empty
+    if ($email == "" || $password == ""){
 
-    if ($userId){
-      $fName = $userId[0][fName];
-      $lName = $userId[0][lName];
-      $admin = $userId[0][admin];
+      $message = "<div class='alert alert-danger' role='alert'> Ply again.</div>";
+      include 'login.php';
+      exit();
 
-      session_start();
-      $_SESSION['LOGGED_IN']='OK';
-      $_SESSION['type']='employee';
-      // $_SESSION['id'] = $userId;
-      $_SESSION['email'] = $email;
-      $_SESSION['fName'] = $fName;
-      $_SESSION['lName'] = $lName;
-      $_SESSION['admin'] = $admin;
+    } else {
+      // Get user information
+      $userId = loginUsers($email,$password, $type);
 
-        header('Location: ../employees/index.php');
-        exit();
-    } else
-    {
-        $message = "<div class='alert alert-danger' role='alert'>Login failed. Please try again.</div>";
-        include 'login.php';
-        exit();
+      if ($userId){
+        $fName = $userId[0][fName];
+        $lName = $userId[0][lName];
+        $admin = $userId[0][admin];
+
+        session_start();
+        $_SESSION['LOGGED_IN']='OK';
+        $_SESSION['type']='employee';
+        // $_SESSION['id'] = $userId;
+        $_SESSION['email'] = $email;
+        $_SESSION['fName'] = $fName;
+        $_SESSION['lName'] = $lName;
+        $_SESSION['admin'] = $admin;
+
+          header('Location: ../employees/index.php');
+          exit();
+      } else
+      {
+          // Error if user information doesn't match db
+          $message = "<div class='alert alert-danger' role='alert'>Login failed. Please try again.</div>";
+          include 'login.php';
+          exit();
+      }
     }
 }
 
@@ -101,16 +113,21 @@ if (isset($_POST['visitorRegister'])){
 
   $fName = filter_input(INPUT_POST, 'fName');
   $lName = filter_input(INPUT_POST, 'lName');
-  $email = filter_input(INPUT_POST, 'email');
+  $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
   $password = filter_input(INPUT_POST, 'password');
   $password2 = filter_input(INPUT_POST, 'password2');
   $address = filter_input(INPUT_POST, 'address');
   $address2 = filter_input(INPUT_POST, 'address2');
   $city = filter_input(INPUT_POST, 'city');
   $state = filter_input(INPUT_POST, 'state');
-  $zip = filter_input(INPUT_POST, 'zip');
+  $zip = filter_input(INPUT_POST, 'zip', FILTER_VALIDATE_INT);
 
-  if($password == $password2) {
+  if($fName == "" || $lName == "" || $email == "" || $password == "" || $password2 == "" || $address == "" || $city == "" || $state == "" || $zip == ""){
+    $message = "<div class='alert alert-danger' role='alert'>All fields are required</div>";
+    include 'visitorRegister.php';
+    exit();
+
+  } elseif($password == $password2) {
 
     $success = addVisitor($fName, $lName, $email, $password, $address, $address2, $city, $state, $zip, $type);
 
