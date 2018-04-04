@@ -3,12 +3,25 @@
 <?php include "../model/employeesDb.php"; ?>
 <?php
 
+session_start();
+
 // Logout
 if (isset($_GET['logout'])){
     header('Location: ../usersShared/index.php?logout');
     exit();
 }
 
-include 'dashboard.php';
-exit();
+if ($_SESSION['LOGGED_IN'] == 'OK' && $_SESSION['admin'] == '1'){
+  include '../view/adminHeader.php';
+  include 'dashboard.php';
+  include '../view/adminFooter.php';
+  exit();
+}
+elseif($_SESSION['LOGGED_IN'] == 'OK') {
+    include '../view/employeeHeader.php';
+    include 'visitorsList.php';
+    include '../view/employeeFooter.php';
+    exit();
+}
+
 ?>

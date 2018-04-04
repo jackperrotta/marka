@@ -67,8 +67,18 @@ if (isset($_POST['login']) && $type=='employee'){
     $userId = loginUsers($email,$password, $type);
 
     if ($userId){
-        session_start();
-        $_SESSION['LOGGED_IN']='OK';
+      $fName = $userId[0][fName];
+      $lName = $userId[0][lName];
+      $admin = $userId[0][admin];
+
+      session_start();
+      $_SESSION['LOGGED_IN']='OK';
+      $_SESSION['type']='employee';
+      // $_SESSION['id'] = $userId;
+      $_SESSION['email'] = $email;
+      $_SESSION['fName'] = $fName;
+      $_SESSION['lName'] = $lName;
+      $_SESSION['admin'] = $admin;
 
         header('Location: ../employees/index.php');
         exit();
