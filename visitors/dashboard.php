@@ -17,7 +17,7 @@
             <span id="date">
             </span>
           </p>
-          <p><a class="btn btn-info" href="<?php echo $base_path;?>/visitors/index.php?tag=fri" role="button">View Pass &raquo;</a></p>
+          <p><a class="btn btn-info" href="<?php echo $base_path;?>/visitors/index.php?status=tag" role="button">View Pass &raquo;</a></p>
         </div>
       </div>
     </div>

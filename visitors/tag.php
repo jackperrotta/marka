@@ -1,16 +1,18 @@
 <?php include '../view/visitorHeader.php' ?>
 <div class="container">
   <div class="row text-center mt-3">
-    <div class="col-md-12">
-      <h1 id="date"></h1>
-      <img src="<?php echo $base_path ?>/img/tagGifs/girls_beach.gif" alt="">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <div class="card text-white bg-info mb-3">
+        <div class="card-body">
+          <h1 class="card-title"><?php echo $fName . " " . $lName ?></h1>
+          <h3 id="date"></h3>
+        </div>
+        <img class="card-img-bottom" src="<?php echo $base_path . $imgUrl; ?>" alt="beach tag">
+      </div>
+
+
     </div>
   </div>
-  <!-- <div class="row">
-    <div class="col-md-3">
-      <a href="<?php echo $base_path ?>/visitors/index.php" class="btn btn-info">Back to Dashboard</a>
-    </div>
-  </div> -->
 </div>
 <script>
 var d = new Date();

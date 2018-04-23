@@ -68,7 +68,7 @@ if (isset($_POST['login']) && $type=='employee'){
     // Make sure they're not empty
     if ($email == "" || $password == ""){
 
-      $message = "<div class='alert alert-danger' role='alert'> Ply again.</div>";
+      $message = "<div class='alert alert-danger' role='alert'>Try again.</div>";
       include 'login.php';
       exit();
 

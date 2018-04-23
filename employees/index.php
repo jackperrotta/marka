@@ -19,12 +19,18 @@ if (isset($_GET['visitors'])){
 }
 
 if ($_SESSION['LOGGED_IN'] == 'OK' && $_SESSION['admin'] == '1'){
+  $users = getUsers();
+  foreach ($users as $user) {
+    $name = $user[0] . " " . $user[1];
+  };
+  $fullVisitors = getMoreUsers();
   include '../view/adminHeader.php';
   include 'dashboard.php';
   include '../view/adminFooter.php';
   exit();
 }
 elseif($_SESSION['LOGGED_IN'] == 'OK') {
+
     include '../view/employeeHeader.php';
     include 'visitorsList.php';
     include '../view/employeeFooter.php';

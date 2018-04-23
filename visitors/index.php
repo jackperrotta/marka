@@ -4,7 +4,6 @@
 <?php
 
 $message = "";
-$tag = filter_input(INPUT_GET,'tag');
 $status = filter_input(INPUT_GET, 'status');
 
 session_start();
@@ -30,9 +29,45 @@ if ($status == 'logout'){
 };
 
 //if tag is set
-if ($tag == 'fri'){
-  include 'tag.php';
-  exit();
+if ($status == 'tag'){
+  $date = date("l");
+  // $date = 'Friday';
+
+  if ($date == 'Monday'){
+    $imgUrl = '/img/tagGifs/dad-daughter.gif';
+    include 'tag.php';
+    exit();
+  }
+  elseif ($date == 'Tuesday'){
+    $imgUrl = '/img/tagGifs/dance.gif';
+    include 'tag.php';
+    exit();
+  }
+  elseif ($date == 'Wednesday'){
+    $imgUrl = '/img/tagGifs/dog.gif';
+    include 'tag.php';
+    exit();
+  }
+  elseif ($date == 'Thursday'){
+    $imgUrl = '/img/tagGifs/girls_beach.gif';
+    include 'tag.php';
+    exit();
+  }
+  elseif ($date == 'Friday'){
+    $imgUrl = '/img/tagGifs/gym.gif';
+    include 'tag.php';
+    exit();
+  }
+  elseif ($date == 'Saturday'){
+    $imgUrl = '/img/tagGifs/relax.gif';
+    include 'tag.php';
+    exit();
+  }
+  elseif ($date == 'Sunday'){
+    $imgUrl = '/img/tagGifs/zack.gif';
+    include 'tag.php';
+    exit();
+  }
 };
 
 // Purchase Pass
@@ -43,6 +78,11 @@ if($status == 'purchase'){
 
 if($status == 'payment2'){
   include 'paymentDetails.php';
+  exit();
+};
+
+if($status == 'paymentDaily'){
+  include 'paymentDaily.php';
   exit();
 };
 
