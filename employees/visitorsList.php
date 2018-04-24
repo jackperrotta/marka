@@ -1,131 +1,73 @@
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+<script>
 
-  <h2>Section title</h2>
+function showCustomer(str) {
+    if (str.length === 0) {
+        document.getElementById("results").innerHTML = "";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+        // readyState four means the request is complete.
+        // status 200 means no errors on the page
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        // grab some variables
+        responseText = xmlhttp.responseText;
+        indexOfComma = responseText.indexOf(",");
+
+        // a string length greater that zero means that there was *something*
+        if (responseText.length > 0)
+            {
+            // If no comma was found, then there must have been exactly one match
+            if ((indexOfComma === -1) )
+                    {
+                    //bingo!  Exactly one match
+                    document.getElementById("results").innerHTML = responseText;
+                    // document.getElementById("custname").value = responseText;
+                    }
+                    else
+                    {
+                    //more than one response, let's show them all
+                    //i'd like to show some line breaks instead of commas
+                    var newResponseText = responseText.replace(/,/g,"<tr><td>",/:/g,"</td></tr>");
+                    document.getElementById("results").innerHTML = newResponseText;
+                    }
+            }
+        }
+    };
+    xmlhttp.open("GET", "services/customerLookup.php?q=" + str, true);
+    xmlhttp.send();
+    }
+}
+
+window.onload = function(){
+    document.getElementById('custname').onkeyup = function(){
+        var custname =  document.getElementById('custname').value;
+        showCustomer(custname);
+    };
+};
+
+</script>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <form>
+        <label for="custname">Customer Lookup:</label> <input type="text" id="custname" style="width:80%;">
+      </form>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
   <div class="table-responsive w-100">
     <table class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
-          <th>Header</th>
-          <th>Header</th>
-          <th>Header</th>
-          <th>Header</th>
+          <th>First Name</th>
+          <th>Last Name</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1,001</td>
-          <td>Lorem</td>
-          <td>ipsum</td>
-          <td>dolor</td>
-          <td>sit</td>
-        </tr>
-        <tr>
-          <td>1,002</td>
-          <td>amet</td>
-          <td>consectetur</td>
-          <td>adipiscing</td>
-          <td>elit</td>
-        </tr>
-        <tr>
-          <td>1,003</td>
-          <td>Integer</td>
-          <td>nec</td>
-          <td>odio</td>
-          <td>Praesent</td>
-        </tr>
-        <tr>
-          <td>1,003</td>
-          <td>libero</td>
-          <td>Sed</td>
-          <td>cursus</td>
-          <td>ante</td>
-        </tr>
-        <tr>
-          <td>1,004</td>
-          <td>dapibus</td>
-          <td>diam</td>
-          <td>Sed</td>
-          <td>nisi</td>
-        </tr>
-        <tr>
-          <td>1,005</td>
-          <td>Nulla</td>
-          <td>quis</td>
-          <td>sem</td>
-          <td>at</td>
-        </tr>
-        <tr>
-          <td>1,006</td>
-          <td>nibh</td>
-          <td>elementum</td>
-          <td>imperdiet</td>
-          <td>Duis</td>
-        </tr>
-        <tr>
-          <td>1,007</td>
-          <td>sagittis</td>
-          <td>ipsum</td>
-          <td>Praesent</td>
-          <td>mauris</td>
-        </tr>
-        <tr>
-          <td>1,008</td>
-          <td>Fusce</td>
-          <td>nec</td>
-          <td>tellus</td>
-          <td>sed</td>
-        </tr>
-        <tr>
-          <td>1,009</td>
-          <td>augue</td>
-          <td>semper</td>
-          <td>porta</td>
-          <td>Mauris</td>
-        </tr>
-        <tr>
-          <td>1,010</td>
-          <td>massa</td>
-          <td>Vestibulum</td>
-          <td>lacinia</td>
-          <td>arcu</td>
-        </tr>
-        <tr>
-          <td>1,011</td>
-          <td>eget</td>
-          <td>nulla</td>
-          <td>Class</td>
-          <td>aptent</td>
-        </tr>
-        <tr>
-          <td>1,012</td>
-          <td>taciti</td>
-          <td>sociosqu</td>
-          <td>ad</td>
-          <td>litora</td>
-        </tr>
-        <tr>
-          <td>1,013</td>
-          <td>torquent</td>
-          <td>per</td>
-          <td>conubia</td>
-          <td>nostra</td>
-        </tr>
-        <tr>
-          <td>1,014</td>
-          <td>per</td>
-          <td>inceptos</td>
-          <td>himenaeos</td>
-          <td>Curabitur</td>
-        </tr>
-        <tr>
-          <td>1,015</td>
-          <td>sodales</td>
-          <td>ligula</td>
-          <td>in</td>
-          <td>libero</td>
-        </tr>
+      <tbody id="results">
+
       </tbody>
     </table>
   </div>

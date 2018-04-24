@@ -16,33 +16,67 @@
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script>
-  var ctx = document.getElementById("myChart");
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      datasets: [{
-        data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-        lineTension: 0,
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        borderWidth: 4,
-        pointBackgroundColor: '#007bff'
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
-      legend: {
-        display: false,
-      }
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200){
+      var data = JSON.parse(this.responseText);
+      console.log(data);
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+         type: 'scatter',
+         data: {
+           labels: ["Brigaintine", "Atlantic City", "Ventnor City", "Margate City", "Ocean City", "Sea Isle", "Avalon", "Wildwood"],
+           datasets: [{
+             label: 'Legend',
+              data: data,
+              pointBackgroundColor: ["rgba(63,191,63,1)", "rgba(63,191,63,1)", "rgba(63,191,63,1)", "rgba(63,191,63,1)", "rgba(63,191,63,1)", "rgba(63,191,63,1)", "rgba(63,191,63,1)", "rgba(63,191,63,1)"],
+              radius: 6,
+              borderWidth: 3
+           }]
+         },
+         options: {
+           tooltips: {
+             callbacks: {
+                label: function(tooltipItem, data) {
+                   var label = data.labels[tooltipItem.index];
+                   return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+                }
+             }
+          },
+           legend: {
+             display: false
+           },
+           scales: {
+             yAxes: [
+               {
+                 scaleLabel: {
+                   display: true,
+                   labelString: 'Total Customer Population',
+                   fontSize: 14
+                 }
+               }
+             ],
+             xAxes: [
+               {
+                 scaleLabel: {
+                   display: true,
+                   labelString: 'Beaches',
+                   fontSize: 14
+                 },
+                 ticks: {
+                    callback: function(value, index, values) {
+                        return '# ' + value;
+                    }
+                }
+               }
+             ]
+           }
+         }
+       });
     }
-  });
+  }
+  xmlhttp.open("GET", "../services/chartsData.php", true);
+  xmlhttp.send();
 </script>
 </body>
 </html>

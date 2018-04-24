@@ -21,3 +21,14 @@ function getMoreUsers(){
   $statement->closeCursor();
   return $moreUsers;
 }
+
+function getUsage() {
+  global $db;
+  $statement = $db->prepare(
+    'select `beachID`, `currentPopulation` from beaches'
+  );
+  $statement->execute();
+  $data = $statement->fetchAll();
+  $statement->closeCursor();
+  return $data;
+}
