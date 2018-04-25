@@ -16,30 +16,36 @@ for ($i=0; $i < sizeof($cust); $i++) {
    array_push($arr, $obj);
 }
 
-$json = json_encode($arr);
+$json = $arr;
 
 // get the q parameter from URL
 $q = filter_input(INPUT_GET,'q');
+$q = strtolower($q);
+
+$qwe = array_filter($json, function($page) use ($q) {
+  $t = strtolower($page->x . $page->y);
+  return strpos($t, $q) !== false;
+});
 
 
-$hints[] = "";
+// $len = strlen($qwe);
+// echo 'awd';
+//
+// if (!empty($qwe)) {
+//   echo 'awd';
+//   $qwe = $json;
+// }
 
-// lookup all hints from array if $q is different from ""
-if ($q !== "") {
-    $q = strtolower($q);
-    $len=strlen($q);
-    foreach($json as $name) {
-        if (stristr($q, substr($name, 0, $len))) {
-            if ($hints[0] === "") {
-                $hints[0] = $name;
-            } else {
-                $hints[] = $name; //appending a new item to the array
-            }
-        }
-    }
-}
+// $results = [];
+//
+// foreach($qwe as $name) {
+//
+//                 $results[] = $name; //appending a new item to the array
+//
+//     }
 
-// echo json_encode($hints);
-echo implode(",", $hints , ":");
-
+$jsonn = json_encode($qwe);
+// echo "<tr><td>" . $qwe . "</td></tr>";
+echo $jsonn;
+// echo implode(",", $results);
 ?>

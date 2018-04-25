@@ -1,6 +1,7 @@
 <script>
 
 function showCustomer(str) {
+  console.log(str)
     if (str.length === 0) {
         document.getElementById("results").innerHTML = "";
         return;
@@ -12,29 +13,22 @@ function showCustomer(str) {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
         // grab some variables
         responseText = xmlhttp.responseText;
+        json = JSON.parse(responseText);
         indexOfComma = responseText.indexOf(",");
 
-        // a string length greater that zero means that there was *something*
-        if (responseText.length > 0)
-            {
-            // If no comma was found, then there must have been exactly one match
-            if ((indexOfComma === -1) )
-                    {
-                    //bingo!  Exactly one match
-                    document.getElementById("results").innerHTML = responseText;
-                    // document.getElementById("custname").value = responseText;
-                    }
-                    else
-                    {
-                    //more than one response, let's show them all
-                    //i'd like to show some line breaks instead of commas
-                    var newResponseText = responseText.replace(/,/g,"<tr><td>",/:/g,"</td></tr>");
-                    document.getElementById("results").innerHTML = newResponseText;
-                    }
-            }
+        var names = [];
+        var newResponseText = '';
+        var i = 1;
+        var row = Object.keys(json);
+        row.forEach((el) => {
+          newResponseText += '<tr><td>' + i + '</td><td>' + json[el].x + '</td><td>' + json[el].y + '</td></tr>';
+          i++;
+        })
+
+        document.getElementById("results").innerHTML = newResponseText;
         }
     };
-    xmlhttp.open("GET", "services/customerLookup.php?q=" + str, true);
+    xmlhttp.open("GET", "../services/customerLookup.php?q=" + str, true);
     xmlhttp.send();
     }
 }
@@ -49,6 +43,16 @@ window.onload = function(){
 </script>
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+  <div class="row text-center mt-3">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <div class="card text-white bg-info mb-3">
+        <div class="card-body">
+          <h2 class="card-title">Todays Tag Animation</h2>
+        </div>
+        <img class="card-img-bottom" src="<?php echo $base_path . $imgUrl; ?>" alt="beach tag">
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-8 mx-auto">
       <form>
